@@ -4,11 +4,6 @@ title: About me
 subtitle: 
 ---
 
-- Mathematics undergrad.
-- Interested in applying DS to businesses such as Amazon.
-- No professional DS experience, but is taking courses and doing projects.
-- Interested in games, maybe make a recommender app?
-
 Hi, I'm Andy Tran, a data scientist focused on helping professional businesses and tech startups understand their customers and recommend the right decisions. To do this, I specialize in recommender systems, natural language processing, and deploying machine learning models with user interfaces.
 
 Studying mathematics taught me to analyze big data. Growing up with games taught me to strategize. I'd love to work with you to solve business problems using math and code.
