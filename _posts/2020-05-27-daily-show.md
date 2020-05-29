@@ -4,7 +4,7 @@ subtitle: I recreated this visualization from FiveThirtyEight
 image: /assets/img/view_of_coronavirus.png
 ---
 
-As a learning experience, I recreated this data visualization from FiveThirtyEight's article, [How Americans View The Coronavirus Crisis And Trump's Response]
+As a learning experience, I recreated this data visualization from FiveThirtyEight's article, [How Americans View The Coronavirus Crisis And Trump's Response](https://projects.fivethirtyeight.com/coronavirus-polls/).
 
 ![](/assets/img/view_of_coronavirus.png)
 
