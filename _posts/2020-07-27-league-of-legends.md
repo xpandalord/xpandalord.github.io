@@ -53,12 +53,6 @@ Furthermore, we go ahead and obtain the Receiver Operating Characteristic (ROC) 
 
 ![Logistic Regression ROC Curve](/assets/img/log-roc-curve.png)
 
-TPR is obtained by calculating TP / (TP + FN), or by dividing all the correctly predicted wins by the actual number of wins in the dataset. FPR is obtained by calculating FP / (TN + FP), or by dividing all the correctly predicted losses by the actual number of losses in the dataset.
-
-![Actual Values Against Predicted Values](/assets/img/actual-predicted.png)
-
-This all just proves that a logstic regression is very reliable for this binary classification.
-
 ## Random Forest Classifier
 For our random forest classifier, we will import the model from sklearn.ensemble. We obtained a training accuracy of 1.00 and a validation accuracy of 0.72, which is great compared to our baseline score of 0.50. However, we must bare in mind that our model extremely overfits our training dataset due to the accuracy score of 100%.
 
@@ -75,3 +69,17 @@ For our random forest classifier, we will import the model from sklearn.ensemble
     print('validation accuracy:', rf.score(X_val, y_val))
 
 ![Random Forest Accuracy Scores](/assets/img/rf-score.png)
+
+## Random Forest Classifier ROC-AUC
+Now we will go ahead and find the ROC-AUC of our random forest classifier. 
+
+    plot_roc_curve(rf, X_test, y_test)
+
+![Random Forest ROC Curve](/assets/img/rf-roc-curve.png)
+
+## ROC-AUC Explanation
+TPR is obtained by calculating TP / (TP + FN), or by dividing all the correctly predicted wins by the actual number of wins in the dataset. FPR is obtained by calculating FP / (TN + FP), or by dividing all the correctly predicted losses by the actual number of losses in the dataset.
+
+![Actual Values Against Predicted Values](/assets/img/actual-predicted.png)
+
+This all just proves that a logistic regression is more reliable for this binary classification.
