@@ -22,3 +22,37 @@ With this dataset, if we predict that blue always loses, we will be right half o
     print(f'Accuracy Score: {y_train.value_counts(normalize=True)[0]:,.2f}')
 
 ![League of Legends Majority Class and Its Accuracy Score](/assets/img/league-majority.png)
+
+## Logistic Regression
+For our logistic regression, we will import the model from sklearn.liner_model, as well as import make_pipeline from sklearn.pipeline, and standardscaler from sklearn.preprocessing. This enables us to create a pipeline so we can scale the data and fit to the model simultaneously. We obtained a training accuracy of 0.74 and a validation accuracy of 0.72, which is great compared to our baseline score of 0.50.
+
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    # Instantiate model
+    log = make_pipeline(
+        StandardScaler(),
+        LogisticRegression(random_state=42)
+    )
+
+    # Fit model on training data
+    log.fit(X_train, y_train)
+
+    # Check performance metric (accuracy) on train, validation, and test sets
+    print('Training Accuracy:', log.score(X_train, y_train))
+    print('Validating Accuracy:', log.score(X_val, y_val))
+
+![Logistic Regression Accuracy Scores](/assets/img/log-score.png)
+
+## Logstic Regression ROC-AUC
+Furthermore, we go ahead and obtain the Receiver Operating Characteristic (ROC) curve as well as the Area Under the ROC Curve (AUC). This allows us to measure how well our model is able to distringuish between classes. The higher the AUC is, the better the model is at predicting 0s as 0s and 1s as 1s. The ROC curve is plotted with the True Positive Rate (TPR) against the False Positive Rate (FPR), where the TPR is on the y-axis and the FPR is on the x-axis. 
+
+    from sklearn.metrics import plot_roc_curve
+    plot_roc_curve(log, X_test, y_test)
+
+![Logistic Regression ROC Curve](/assets/img/log-roc-curve.png)
+
+TPR is obtained by calculating 
+
+![Actual Values Against Predicted Values](/assets/img/actual-predicted.png)
