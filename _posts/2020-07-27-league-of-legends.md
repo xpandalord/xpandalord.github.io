@@ -1,1 +1,64 @@
-test
+---
+title: Predicting the outcome of a League of Legends Match
+subtitle: How to decide based on a few factors
+image: /assets/img/league-of-legends.jpg
+---
+
+# Factors
+## Rating
+Using the following dataset from Kaggle, [Movies on Netflix, Prime Video, Hulu and Disney+](https://www.kaggle.com/ruchi798/movies-on-netflix-prime-video-hulu-and-disney), let's determine which movie rating system to use when figuring out what movie to watch. The dataset gives us ratings from Internet Movie Database(IMDb), where movies are rated out of 10, as well as from Rotten Tomatoes, where movies are rated out of 100. We will convert IMDb's ratings into out of a 100 to make the ratings more consistent.
+
+The top 10 movie by IMDb is:
+
+![Top 10 Movies by IMDb](/assets/img/top_ten_IMDb.png)
+
+The top 10 movie by Rotten Tomatoes is:
+
+![Top 10 Movies by Rotten Tomatoes](/assets/img/top_ten_Rotten_Tomatoes.png)
+
+This discrepancy amoung the top 10 movies of each rating system shows how vastly different each system views these movies. Thus we must dive deeper to learn about the truth. Let's look at the density plots and histograms of the ratings.
+
+![Distribution Plot of IMDb's Ratings](/assets/img/IMDb_ratings.png)
+
+![Distribution Plot of Rotten Tomatoes' Ratings](/assets/img/Rotten_Tomatoes_ratings.png)
+
+As we can observe, IMDb's ratings is unimodal, meaning that it has a uniform distribution with the mean being 63.5%, or technically a 6.35 rating by IMDb standards. Even though the average for Rotten Tomatoes' ratings are at 61.1%, we can see on its density plot that no maxima is located at 61.1%. This is because of the bi/multimodal graph of its ratings. We can also see that the density itself is much lower for all Rotten Tomatoes' ratings.
+
+The following is how I obtained these specific percentages:
+
+![A Statistical Overview of the Dataset's Features](/assets/img/movies_describe.png)
+## Genre
+Due to this being a blog, I have limited the examples to only the genres of Action and Sci-Fi, since they were my most viewed types of movies. Genres can play a key role in deciding which system to use due to the raters' preferences. These movies were grouped by their genre so any multi-genre movie that was at least an action movie was counted as an action movie, likewise for sci-fi movies as well.
+
+![Kernel Density Estimate Plot of Action Ratings](/assets/img/Action_Ratings.png)
+
+![Kernel Density Estimate Plot of Sci-Fi Ratings](/assets/img/Sci_Fi_Ratings.png)
+
+We can see that the densities are thinner with respective IMDb's ratings, but wider with respective to Roten Tomatoes' ratings. We can also see that depending on the genre, there can be two or more high density areas in the graphs. Regardless of the number of high density areas, the height and width of each area provides us much insight into the breath of ratings each system gives to such movies.
+## Year and Age
+The decade the movie came out and the age group the movie was intended for also plays a key role in determining which rating system to use.
+
+![Box Plot of IMDb's Ratings](/assets/img/Box_Plot_IMDb.png)
+
+![Box Plot of Rotten Tomatoes' Ratings](/assets/img/Box_Plot_Rotten_Tomatoes.png)
+
+These plots tell us about how the distribution was with respect to the decade the movies came out in, and furthermore separated into age ratings.
+## Correlation Coefficient
+By using the correlation coefficient for each numeric column paired with another numeric column, we can see how much of an influence they have on each other.
+
+The correlation coefficient of the variables:
+
+![Correlation Coefficients](/assets/img/correlation.png)
+
+In the case of choosing based off of one aspect of the movie, such as platform or runtime, by the correlation coefficient, it seems that movies that are on Netflix, Prime Video, and Disney+ are more strongly correlated to IMDb ratings than they are to Rotten Tomatoes, vice versa for movies on Hulu. There also appears to be a stronger correlation between Runtime and IMDb ratings than Runtime and Rotten Tomatoes ratings.
+# Data Analysis
+## Rating
+IMDb's distribution plot showed us that it gives out fairer ratings of movies in general due to it's uniform distribution. Compared, to Rotten Tomatoes bimodal distribution, people who rate on IMDb average nicely to what the majority would agree to be the true rating of a movie. Since Rotten Tomatoes has a bimodal distribution, we can deduce that it is caused differing opinions. For any given movie, people on Rotten Tomatoes either love or hate the movie, thus creating such a distribution. We can further say that people who rate on Rotten Tomatoes are more opinionated than those who rate on IMDb.
+## Genre
+Differences of genre further prove that Rotten Tomatoes's raters are more opinionated and rate more critically tham IMDb's raters. The areas of high density are wider for Rotten Tomatoes' ratings compared to IMDb's ratings in general. Though if we look at the difference betweet action rating distributions and sci-fi rating distributions, IMDb's ratings do not change in range that much but Rotten Tomatoes' ratings get sharper and thinner. This is most likely due to more of the sci-fi community critically rates sci-fi movies on Rotten Tomatoes compared to the action community rating action movies on the same platform.
+## Year and Age
+In general, IMDb's ratings have shown time and time again that they are more in agreement of what the true rating of a movie is compared to Rotten Tomatoes. This is evident in the box plots since the range overall as well as the range of the second and third quartile are smaller in IMDb's box plot than it is in Rotten Tomatoes' box plot. Thus more people rate closer to the agreed average in IMDb than in Rotten Tomatoes.
+## Correlation Coefficient
+Based off of correlation coefficients, only movies on Hulu are more accurately rated on Rotten Tomatoes than on IMDb. In other words, in general for all movies on other platforms, viewers should consult IMDb for an accurate rating of those movies. In the event that a viewer wants a movie based off of its runtime, IMDb also more accurately distinguishes its ratings based off of runtime compared to Rotten Tomatoes. This could be due to having higher ratings on movies that have a much higher runtime due to the budget of that movie and vice versa for movies with low runtime due to low budget.
+# Conclusion
+There are other things that could affect the rating difference of a movie between IMDb and Rotten Tomatoes, though with the previous examples, we can be confident in saying that if you are looking for the actual rating of a movie based off the general populace, then go with IMDb. However, if you are looking for ratings on a movie by individuals who have similar opinions to your own, then you can go for the more opinionated movie rating system, Rotten Tomatoes. For example, if you wanted to know what the die-hard sci-fi community has to say about a new star wars movie, then use Rotten Tomatoes. Here's a link to the [colaboratory notebook](https://colab.research.google.com/drive/1y9_vQc8iY851NRfMT9kvXVWVsKjyx2Rp?usp=sharing) to view all code that was used to produce the graphs above.
