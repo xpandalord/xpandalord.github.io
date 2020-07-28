@@ -72,6 +72,27 @@ Now using the eli5 library, which is short for explain it like I'm 5, we can pro
 
 ![Permutation Feature Importance Eli5 Edition](/assets/img/eli5-feature-importance.png)
 
+## Total Gold vs Gold Difference
+
+We can see above that the top two factors that determine the outcome of a match are the total amount of gold for each team vs the gold difference between the teams. By using a Partial Dependence Plot (PDP) interact, we can see how the prediction depends on the the input variables.
+
+    from pdpbox.pdp import pdp_interact, pdp_interact_plot
+
+    features = ['blueTotalGold', 'blueGoldDiff']
+
+    interaction = pdp_interact(
+        model=log,
+        dataset=X_val,
+        model_features=X_val.columns,
+        features=features
+    )
+
+    pdp_interact_plot(interaction, plot_type='grid', feature_names=features)
+
+![PDP interact for blueTotalGold and blueGoldDiff](/assets/img/pdp-blue-totalGold-goldDiff.png)
+
+By looking at the changes between the prediction dependancies as either the gold difference increases or the total amount of gold increases, we can definitely say that the outcome of a match is more dependant on an increasing gold difference than an increasing total amount of gold. Thus, we can summerize that in order to win a match in League of Legends, the most important factor would be to create a gold advantage between your team and the enemy team.
+
 ## Target, Metric, and Baseline
 Our target for this dataset is the blueWins feature telling us whether the blue team won with a 1, and otherwise a 0. Thus, we will be using logistic regression and random forest classifier from the sklearn library to fit this binary classification. This will allow us to obtain the accuracy of our model by scoring the model's predictions based on the actual values in our dataset. We are using accuracy since our classes are balanced. An easy way to judge whether our models are sufficient is by comparing their accuracy scores with a baseline prediction.
 
@@ -161,3 +182,6 @@ TPR is obtained by calculating TP / (TP + FN), or by dividing all the correctly 
 
 ![Actual Values Against Predicted Values](/assets/img/actual-predicted.png)
 
+## Conclusion
+
+Here’s a link to the [notebook](https://github.com/xpandalord/DS-Builds/blob/master/Unit-2/league-blog.ipynb) to view all code that was used to produce the graphs above.
