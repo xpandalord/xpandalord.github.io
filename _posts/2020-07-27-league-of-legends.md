@@ -14,7 +14,7 @@ We will specifically use permutation feature importance to obtain the scores we 
 
     from sklearn.inspection import permutation_importance
 
-    result = permutation_importance(log, X_val, y_val,
+    result = permutation_importance(best_lr, X_val, y_val,
                                     n_repeats=5, random_state=42)
 
     df = pd.DataFrame({'feature': X_val.columns,
@@ -23,11 +23,7 @@ We will specifically use permutation feature importance to obtain the scores we 
 
     df.sort_values(by='importances_mean', ascending=False)
 
-![Permutation Feature Importance Part 1](/assets/img/feature-importance-1.png)
-
-![Permutation Feature Importance Part 2](/assets/img/feature-importance-2.png)
-
-Here, we can see that there are a lot of redundant features since the mean and standard deviation of their importances are exactly the same as well as they are representing the same statistic. These features are 
+There are a lot of redundant features since the mean and standard deviation of their importances are exactly the same as well as they are representing the same statistic. These features are 
 1. redTotalGold and redGoldPerMin
 2. blueTotalGold and blueGoldPerMin
 3. blueKills and redDeaths
@@ -38,26 +34,25 @@ Here, we can see that there are a lot of redundant features since the mean and s
 8. redTotalMinionsKilled and redCSPerMin
 9. blueFirstBlood and redFirstBlood
 
-We will drop all latter features due to the former feature being either easier to track or blue team related. The features that are blue team related has a red team feature counterpart that tells the exact same statistic. There is also the gameId feature that doesn't influence the outcome of the game at all so we will drop that too. Now our feature importance looks as the following:
-
-![Permutation Feature Importance Part 3](/assets/img/feature-importance-3.png)
-
-![Permutation Feature Importance Part 4](/assets/img/feature-importance-4.png)
-
-Finally we will drop all features that have an importance mean of zero. This is because of how insignificant those features are to the actual outcome of the match.
+We will drop all latter features due to the former feature being either easier to track or blue team related. The features that are blue team related has a red team feature counterpart that tells the exact same statistic. There is also the gameId feature that doesn't influence the outcome of the game at all so we will drop that too. Finally we will drop all features that have an importance mean of zero. This is because of how insignificant those features are to the actual outcome of the match.
 1. blueAvgLevel
 2. blueWardsDestroyed
 3. redAvgLevel
 4. redWardsDestroyed
 5. blueAssists
+6. redAssists
 
-Now using the eli5 library, which is short for explain it like I'm 5, we can produce a colorized version of our final feature importances.
+The following graph represents the current features for the logistic regression model after removing the above features.
+
+![Permutation Feature Importance](/assets/img/feature-importance.png)
+
+Now using the eli5 library, which is short for Explain it Like I'm 5, we can produce a colorized version of our final feature importances.
 
     import eli5
     from eli5.sklearn import PermutationImportance
 
     permuter = PermutationImportance(
-        log,
+        best_lr,
         scoring='accuracy',
         n_iter=5,
         random_state=42
