@@ -184,4 +184,4 @@ TPR is obtained by calculating TP / (TP + FN), or by dividing all the correctly 
 
 ## Conclusion
 
-Here’s a link to the [notebook](https://github.com/xpandalord/DS-Builds/blob/master/Unit-2/league-blog.ipynb) to view all code that was used to produce the graphs above.
+There are a lot of factors that lead to victory in a game. In general, amassing resources is a good start to wining, but it is a fruitless endeavor if your opponent can do the same. Therefore, in order to win, one must create a difference between themselves and the enemy that is beneficial to oneself. In League of Legends, the most important statistic to have an advantage over is the amount of gold your team has. Thus, it is in everyone's best interest to not only accrue gold, but to also prevent the enemy from accumulating their own wealth as well. Here’s a link to the [notebook](https://github.com/xpandalord/DS-Builds/blob/master/Unit-2/league-blog.ipynb) to view all code that was used to produce the graphs above.
