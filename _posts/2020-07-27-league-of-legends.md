@@ -50,6 +50,8 @@ By looking at the changes between the prediction dependancies as either the gold
 ## Target, Metric, and Baseline
 Our target for this dataset is the blueWins feature telling us whether the blue team won with a 1, and otherwise a 0. Thus, we will be using logistic regression and random forest classifier from the sklearn library to fit this binary classification. This will allow us to obtain the accuracy of our model by scoring the model's predictions based on the actual values in our dataset. We are using accuracy since our classes are balanced. An easy way to judge whether our models are sufficient is by comparing their accuracy scores with a baseline prediction.
 
+There were no features that would leak the outcome of the match. Logistic regression and random forest classifier are among the easiest as well as the best models to use when dealing with binary classification. If one could score higher AUC as well as validation accuracy with logistic regression, then they should use logistic regression due to how computationally heavy fitting a random forest classifier is in comparison.
+
 With this dataset, if we predict that blue always loses, we will be right half of the time. In other words our baseline model is predicting the blue team to always loses with an accuracy score of 0.50. The following is the code to find the majority class between the two possible outcomes and our model's accuracy score.
 
 ![League of Legends Majority Class and Its Accuracy Score](/assets/img/league-majority.png)
